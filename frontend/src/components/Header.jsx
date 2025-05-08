@@ -3,8 +3,21 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { Link, useNavigate } from "react-router-dom";
+
 
 const Header = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const username = localStorage.getItem("username");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    navigate("/login");
+  };
+
   return (
     <header className="w-full fixed content-center top-0 bg-white shadow-md z-50 px-4 py-2 flex items-center justify-between flex-wrap">
       {/* Left: Menu & Logo */}
@@ -37,11 +50,35 @@ const Header = () => {
       </div>
 
       {/* Right: Sign In */}
-      <div className="w-auto  mt-2 sm:mt-0 flex justify-end">
+      {/* <div className="w-auto  mt-2 sm:mt-0 flex justify-end">
         <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full hover:bg-gray-100">
           <AccountCircleIcon />
           <span>Sign in</span>
         </button>
+      </div> */}
+
+      {/* Right: Auth Button */}
+      <div className="mt-2 sm:mt-0 flex justify-end">
+        {token ? (
+          <div className="flex items-center gap-2">
+            <span className="text-gray-700 font-medium hidden sm:inline">Hi, {username}</span>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full hover:bg-gray-100"
+            >
+              <LogoutIcon />
+              <span>Logout</span>
+            </button>
+          </div>
+        ) : (
+          <Link
+            to="/login"
+            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full hover:bg-gray-100"
+          >
+            <AccountCircleIcon />
+            <span>Sign in</span>
+          </Link>
+        )}
       </div>
     </header>
   );
