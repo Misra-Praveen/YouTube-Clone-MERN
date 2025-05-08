@@ -17,6 +17,7 @@ function Login() {
       // Save token to localStorage (or cookies if you prefer)
       localStorage.setItem("token", token);
       localStorage.setItem("username", user.username);
+      localStorage.setItem("avatar", user.avatar);
       alert(`Welcome, ${user.username}!`);
 
       navigate("/"); // Redirect to home or dashboard
@@ -35,25 +36,25 @@ function Login() {
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
         <div>
-          <label className="block mb-1 font-medium">Email</label>
+          <label className="block mb-1  mt-2 text-start font-semibold text-blue-500">Email<span className="text-red-500 font-bold">*</span></label>
           <input
             type="email"
             placeholder="Email"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:border-blue-500"
+            className="w-full shadow shadow-gray-600 px-3 py-2 rounded focus: outline-none focus:ring-2 focus:ring-blue-200"
             required
           />
         </div>
 
         <div className="mt-4">
-          <label className="block mb-1 font-medium">Password</label>
+          <label className="block mb-1  mt-2 text-start font-semibold text-blue-500">Password<span className="text-red-500 font-bold">*</span></label>
           <input
             type="password"
             placeholder="Password"
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
-            className="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:border-blue-500"
+            className="w-full shadow shadow-gray-600 px-3 py-2 rounded focus: outline-none focus:ring-2 focus:ring-blue-200"
             required
           />
         </div>

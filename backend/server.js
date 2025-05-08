@@ -2,6 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
+const path = require("path");
 
 const authRoutes = require("./routes/authRoute.js")
 const userRoutes = require("./routes/userRoute.js")
@@ -17,6 +18,8 @@ app.use(cors({
 app.use(express.json());
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 const PORT = process.env.PORT || 5000;
 
