@@ -6,7 +6,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Link, useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ toggleSidebar }) => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
@@ -14,6 +14,7 @@ const Header = () => {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef();
+console.log("toggleSidebar exists?", typeof toggleSidebar);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -40,7 +41,7 @@ const Header = () => {
     <header className="w-full fixed content-center top-0 bg-white shadow-md z-50 px-4 py-2 flex items-center justify-between flex-wrap">
       {/* Left: Menu & Logo */}
       <div className="flex items-center gap-0.5 mt-2 md:gap-4 w-auto">
-        <button className="hidden sm:block p-2 rounded-full hover:bg-gray-100">
+        <button className="hidden sm:block p-2 rounded-full hover:bg-gray-100" onClick={toggleSidebar}>
           <MenuRoundedIcon fontSize="medium" />
         </button>
         <div className="flex items-center gap-1">

@@ -7,13 +7,17 @@ import { lazy,Suspense } from 'react';
 
 const Login = lazy(()=>import("./pages/Login.jsx"))
 const Register = lazy(()=>import("./pages/Register.jsx"))
-
+const Home = lazy(()=>import("./pages/Home.jsx"))
 
 const appRouter = createBrowserRouter([
   {
     path:"/",
     element:<App />,
     children:[
+      {
+        path:"/",
+        element:<Home />
+      },
       {
         path:"/login",
         element:<Login />
