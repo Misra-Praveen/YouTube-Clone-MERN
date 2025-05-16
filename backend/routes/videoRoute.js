@@ -22,7 +22,7 @@ const upload = multer({ storage });
 
 
 // Route to get all videos
-router.get("/videos", getAllVideos);
+router.get("/", getAllVideos);
 
 router.get("/:id", getVideoById);
 router.put("/:id/like", verifyToken, likeVideo);
