@@ -7,6 +7,9 @@ const path = require("path");
 const authRoutes = require("./routes/authRoute.js")
 const userRoutes = require("./routes/userRoute.js")
 const videoRoutes = require("./routes/videoRoute.js");
+const channelRoutes = require("./routes/channelRoutes");
+const commentRoutes = require("./routes/commentRoute.js");
+
 
 
 //Middleware
@@ -20,6 +23,8 @@ app.use(express.json());
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/videos", videoRoutes);
+app.use("/api/comments", commentRoutes);
+app.use("/api/channels", channelRoutes);
 
 
 
